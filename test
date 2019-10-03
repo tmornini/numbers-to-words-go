@@ -3,3 +3,5 @@
 go run main.go < specs.input > specs.output || exit 1
 
 git diff specs.output                       || exit 1
+
+git checkout specs.output                   || exit 1

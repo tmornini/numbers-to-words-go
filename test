@@ -1,6 +1,6 @@
 #!/bin/sh
 
-go run main.go < specs.input > specs.output     || exit 1
+go run *.go < specs.input > specs.output        || exit 1
 
 OUTPUT=$(
   git diff specs.output > /dev/stdout || exit 1

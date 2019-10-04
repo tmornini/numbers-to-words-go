@@ -1,0 +1,56 @@
+package main
+
+var onesWords = []string{
+	"zero",
+	"one",
+	"two",
+	"three",
+	"four",
+	"five",
+	"six",
+	"seven",
+	"eight",
+	"nine",
+	"ten",
+	"eleven",
+	"twelve",
+	"thirteen",
+	"fourteen",
+	"fifteen",
+	"sixteen",
+	"seventeen",
+	"eighteen",
+	"nineteen",
+}
+
+var tensWords = []string{
+	"",
+	"",
+	"twenty",
+	"thirty",
+	"forty",
+	"fifty",
+	"sixty",
+	"seventy",
+	"eighty",
+	"ninety",
+}
+
+var longScaleWords = []string{
+	"",
+	"",
+	"",
+	"thousand",
+	"",
+	"",
+	"million",
+	"",
+	"",
+	"billion",
+	"",
+	"",
+	"trillion",
+	"",
+	"",
+	"quadrillion",
+}

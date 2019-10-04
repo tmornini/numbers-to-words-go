@@ -1,6 +1,6 @@
 package main
 
-var onesWords = []string{
+var lowWords = []string{
 	"zero",
 	"one",
 	"two",

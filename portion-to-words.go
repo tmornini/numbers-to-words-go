@@ -6,7 +6,7 @@ func portionToWords(value int) []string {
 	hundreds := value / 100
 
 	if hundreds > 0 {
-		parts = append(parts, onesWords[hundreds], "hundred")
+		parts = append(parts, lowWords[hundreds], "hundred")
 	}
 
 	value -= (hundreds * 100)
@@ -19,7 +19,7 @@ func portionToWords(value int) []string {
 	}
 
 	if value > 0 {
-		parts = append(parts, onesWords[value])
+		parts = append(parts, lowWords[value])
 	}
 
 	return parts

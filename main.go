@@ -36,7 +36,7 @@ func integerToWords(value int) string {
 
 	parts := []string{}
 
-	for power := 12; power >= 0; power -= 3 {
+	for power := 15; power >= 0; power -= 3 {
 		portion := value / toThePowerOf(10, power)
 		if portion > 0 {
 			parts = append(parts, portionToWords(portion)...)

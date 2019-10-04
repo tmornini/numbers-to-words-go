@@ -3,14 +3,14 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-
-	power := 10
 
 	for scanner.Scan() {
 		value, err := strconv.Atoi(scanner.Text())
@@ -20,7 +20,7 @@ func main() {
 		}
 
 		fmt.Println(
-			handlePower(power, value),
+			integerToWords(value),
 		)
 	}
 
@@ -29,49 +29,105 @@ func main() {
 	}
 }
 
-func handlePower(power int, value int) string {
-	switch value {
-	case 0:
+func integerToWords(value int) string {
+	if value == 0 {
 		return "zero"
-	case 1:
-		return "one"
-	case 2:
-		return "two"
-	case 3:
-		return "three"
-	case 4:
-		return "four"
-	case 5:
-		return "five"
-	case 6:
-		return "six"
-	case 7:
-		return "seven"
-	case 8:
-		return "eight"
-	case 9:
-		return "nine"
-	case 10:
-		return "ten"
-	case 11:
-		return "eleven"
-	case 12:
-		return "twelve"
-	case 13:
-		return "thirteen"
-	case 14:
-		return "fourteen"
-	case 15:
-		return "fifteen"
-	case 16:
-		return "sixteen"
-	case 17:
-		return "seventeen"
-	case 18:
-		return "eighteen"
-	case 19:
-		return "nineteen"
-	default:
-		return "?"
 	}
+
+	parts := []string{}
+
+	for power := 12; power >= 0; power -= 3 {
+		portion := value / toThePowerOf(10, power)
+		if portion > 0 {
+			parts = append(parts, portionToWords(portion)...)
+			parts = append(parts, longScaleWords[power])
+		}
+		value -= portion * toThePowerOf(10, power)
+	}
+
+	return strings.Join(parts, " ")
+}
+
+func portionToWords(value int) []string {
+	parts := []string{}
+
+	hundreds := value / 100
+
+	if hundreds > 0 {
+		parts = append(parts, onesWords[hundreds], "hundred")
+	}
+
+	value -= (hundreds * 100)
+
+	tens := value / 10
+
+	if tens > 1 {
+		parts = append(parts, tensWords[tens])
+		value -= tens * 10
+	}
+
+	if value > 0 {
+		parts = append(parts, onesWords[value])
+	}
+
+	return parts
+}
+
+func toThePowerOf(i, j int) int {
+	return int(math.Pow(float64(i), float64(j)))
+}
+
+var onesWords = []string{
+	"zero",
+	"one",
+	"two",
+	"three",
+	"four",
+	"five",
+	"six",
+	"seven",
+	"eight",
+	"nine",
+	"ten",
+	"eleven",
+	"twelve",
+	"thirteen",
+	"fourteen",
+	"fifteen",
+	"sixteen",
+	"seventeen",
+	"eighteen",
+	"nineteen",
+}
+
+var tensWords = []string{
+	"",
+	"",
+	"twenty",
+	"thirty",
+	"forty",
+	"fifty",
+	"sixty",
+	"seventy",
+	"eighty",
+	"ninety",
+}
+
+var longScaleWords = []string{
+	"",
+	"",
+	"",
+	"thousand",
+	"",
+	"",
+	"million",
+	"",
+	"",
+	"billion",
+	"",
+	"",
+	"trillion",
+	"",
+	"",
+	"quadrillion",
 }
